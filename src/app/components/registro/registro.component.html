@@ -1,1 +1,169 @@
-<p>registro works!</p>
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+      <h5 class="mb-0"><i class="fa-solid fa-user-plus me-3"></i>Registro de una nueva cuenta</h5>
+    </div>
+    <div class="card-body p-5">
+      <form #f="ngForm" (ngSubmit)="registrar()">
+        <!-- Correo electrónico -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Correo electrónico:</label>
+          <div class="col-sm-10">
+            <input 
+              type="email" 
+              name="correo" 
+              [(ngModel)]="crearCuentaDTO.correo" 
+              class="form-control" 
+              required 
+              email 
+              maxlength="50" 
+              #correo="ngModel"
+              [ngClass]="correo.invalid && correo.dirty ? 'is-invalid' : ''" 
+            />
+          </div>
+        </div>
+  
+        <!-- Contraseña -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Contraseña:</label>
+          <div class="col-sm-10">
+            <input 
+              type="password" 
+              name="password" 
+              [(ngModel)]="crearCuentaDTO.password" 
+              class="form-control" 
+              required 
+              minlength="8" 
+              maxlength="20" 
+              #password="ngModel"
+              [ngClass]="password.invalid && password.dirty ? 'is-invalid' : ''" 
+            />
+          </div>
+        </div>
+  
+        <!-- Rol -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Rol:</label>
+          <div class="col-sm-10">
+            <select 
+              name="rol" 
+              [(ngModel)]="crearCuentaDTO.rol" 
+              class="form-select" 
+              required 
+              #rol="ngModel"
+              [ngClass]="rol.invalid && rol.dirty ? 'is-invalid' : ''" 
+            >
+              <option value="CLIENTE">Cliente</option>
+              <option value="ADMINISTRADOR">Administrador</option>
+            </select>
+          </div>
+        </div>
+  
+        <!-- Fecha de nacimiento -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Fecha de Nacimiento:</label>
+          <div class="col-sm-10">
+            <input 
+              type="date" 
+              name="fechaNacimiento" 
+              [(ngModel)]="crearCuentaDTO.fechaNacimiento" 
+              class="form-control" 
+              required 
+              #fechaNacimiento="ngModel"
+              [ngClass]="fechaNacimiento.invalid && fechaNacimiento.dirty ? 'is-invalid' : ''" 
+            />
+          </div>
+        </div>
+  
+        <!-- Cédula -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Cédula:</label>
+          <div class="col-sm-10">
+            <input 
+              type="text" 
+              name="cedula" 
+              [(ngModel)]="crearCuentaDTO.usuario.cedula" 
+              class="form-control" 
+              required 
+              #cedula="ngModel"
+              [ngClass]="cedula.invalid && cedula.dirty ? 'is-invalid' : ''" 
+            />
+          </div>
+        </div>
+  
+        <!-- Nombre -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Nombre:</label>
+          <div class="col-sm-10">
+            <input 
+              type="text" 
+              name="nombre" 
+              [(ngModel)]="crearCuentaDTO.usuario.nombre" 
+              class="form-control" 
+              required 
+              #nombre="ngModel"
+              [ngClass]="nombre.invalid && nombre.dirty ? 'is-invalid' : ''" 
+            />
+          </div>
+        </div>
+  
+        <!-- Teléfono -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Teléfono:</label>
+          <div class="col-sm-10">
+            <input 
+              type="text" 
+              name="telefono" 
+              [(ngModel)]="crearCuentaDTO.usuario.telefono" 
+              class="form-control" 
+              required 
+              #telefono="ngModel"
+              [ngClass]="telefono.invalid && telefono.dirty ? 'is-invalid' : ''" 
+            />
+          </div>
+        </div>
+  
+        <!-- Dirección -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Dirección:</label>
+          <div class="col-sm-10">
+            <input 
+              type="text" 
+              name="direccion" 
+              [(ngModel)]="crearCuentaDTO.usuario.direccion" 
+              class="form-control" 
+            />
+          </div>
+        </div>
+  
+        <!-- Repetir contraseña -->
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Repetir contraseña:</label>
+          <div class="col-sm-10">
+            <input 
+              type="password" 
+              name="confirmaPassword" 
+              [(ngModel)]="crearCuentaDTO.confirmaPassword" 
+              class="form-control" 
+              required 
+              #confirmaPassword="ngModel"
+              [ngClass]="confirmaPassword.invalid && confirmaPassword.dirty ? 'is-invalid' : ''" 
+            />
+          </div>
+        </div>
+  
+        <!-- Mensaje de error si las contraseñas no coinciden -->
+        <div *ngIf="!sonIguales()" class="alert alert-danger" role="alert">
+          Las contraseñas no coinciden
+      </div>
+      
+  
+        <!-- Botón de registro -->
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid || !sonIguales()">
+            <i class="fa-solid fa-circle-plus me-1"></i> Registrarse
+        </button>
+                </div>
+      </form>
+    </div>
+  </div>
+  
